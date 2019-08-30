@@ -2,6 +2,7 @@
 
 🏭 Factory creator utility to Faker.js
 
+[![Build Status](https://circleci.com/gh/lffg/faker-create-factory.svg?style=svg)](https://circleci.com/gh/lffg/faker-create-factory)
 [![NPM](https://img.shields.io/npm/v/faker-create-factory.svg?logo=npm)](https://npmjs.org/package/faker-create-factory)
 ![Uses TypeScript](https://img.shields.io/badge/Uses-Typescript-294E80.svg)
 
