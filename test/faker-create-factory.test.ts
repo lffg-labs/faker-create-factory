@@ -33,4 +33,20 @@ describe('faker create factory', () => {
       ['string', 'number']
     ]);
   });
+
+  it('should override the schema option if needed', () => {
+    const customName = `Overridden-${Date.now()}`;
+    const gen = Schema.generate({ username: customName });
+    expect(gen.username).toBe(customName);
+  });
+
+  it('should override with a function callback', () => {
+    const customAge = Date.now();
+
+    const gen = Schema.generate((faker) => ({
+      age: faker.helpers.randomize([customAge])
+    }));
+
+    expect(gen.age).toBe(customAge);
+  });
 });

@@ -18,7 +18,7 @@ yarn add faker faker-create-factory
 ## Basic Usage
 
 ```typescript
-import { createFactory } from 'faker';
+import { createFactory } from 'faker-create-factory';
 
 export const UserFactory = createFactory<User>((faker) => ({
   id: faker.random.uuid(),
@@ -31,6 +31,28 @@ export const UserFactory = createFactory<User>((faker) => ({
 UserFactory.generate(); // User
 UserFactory.generateMany(5); // Array<User>
 ```
+
+If needed, you can override the default schema:
+
+```typescript
+import { createFactory } from 'faker-create-factory';
+
+export const Factory = createFactory<Interface>((faker) => ({
+  // ...
+}));
+
+// Plain object:
+Factory.generate({
+  // ...
+});
+
+// With a faker instance:
+Factory.generateMany(5, (faker) => {
+  // ...
+});
+```
+
+The two options (_plain object_ and _with a faker instance_) described above are available in both `generate` and `generateMany` methods.
 
 ## Authors and License
 
