@@ -1,0 +1,38 @@
+{
+  "name": "faker-create-factory",
+  "version": "1.0.0",
+  "description": "Factory creator utility to Faker.js",
+  "main": "./build/faker-create-factory-cjs.js",
+  "module": "./build/faker-create-factory.mjs",
+  "types": "./build/faker-create-factory.d.ts",
+  "repository": "https://github.com/lffg/faker-create-factory",
+  "author": "Luiz Felipe Gonçalves <https://github.com/lffg>",
+  "license": "MIT",
+  "scripts": {
+    "build": "del build && rollup -c",
+    "lint": "eslint . --ext .jsx,.js,.ts,.tsx",
+    "lint:fix": "yarn lint --fix",
+    "check:ts": "tsc --noEmit --skipLibCheck",
+    "test": "jest",
+    "check:all": "yarn lint && yarn check:ts && yarn test"
+  },
+  "devDependencies": {
+    "@types/faker": "4.x",
+    "@types/jest": "^24.0.18",
+    "@types/node": "^12.7.3",
+    "del-cli": "^2.0.0",
+    "eslint": "6.x",
+    "eslint-config-lffg": "7.x",
+    "jest": "^24.9.0",
+    "rollup": "^1.20.3",
+    "rollup-plugin-typescript2": "^0.24.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.2"
+  },
+  "peerDependencies": {
+    "faker": "4.x"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
