@@ -1,4 +1,4 @@
-import { createFactory } from '../src/faker-create-factory';
+import { createFactory } from '../faker-create-factory';
 
 const getType = (v: any) => typeof v;
 
