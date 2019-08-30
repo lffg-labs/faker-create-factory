@@ -17,7 +17,7 @@ lib-cov
 # Coverage directory used by tools like istanbul
 coverage
 
-# nyc test coverage
+# NYC test coverage
 .nyc_output
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
@@ -26,7 +26,7 @@ coverage
 # Bower dependency directory (https://bower.io/)
 bower_components
 
-# node-waf configuration
+# Node-Waf configuration
 .lock-wscript
 
 # Compiled binary addons (https://nodejs.org/api/addons.html)
@@ -35,6 +35,9 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+
+# Dist:
+dist/
 
 # TypeScript v1 declaration files
 typings/
@@ -54,11 +57,17 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
+# DotENV environment variables file
 .env
 
-# next.js build output
+# MacOS .DS_Store
+.DS_Store
+
+# Next.js build output
 .next
 
-# lib dist dir
+# Other files and folders
+tmp
+build
 dist
+__ignore__*

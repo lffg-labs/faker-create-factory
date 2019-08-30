@@ -12,23 +12,35 @@
   "author": "Luiz Felipe Gonçalves <https://github.com/lffg>",
   "license": "MIT",
   "scripts": {
-    "build": "del build && rollup -c",
-    "lint": "eslint . --ext .jsx,.js,.ts,.tsx",
-    "lint:fix": "yarn lint --fix",
-    "check:ts": "tsc --noEmit --skipLibCheck",
+    "c": "git-cz",
+    "format:raw": "prettier --write",
+    "format": "yarn format:raw '**/*.{js,jsx,ts,tsx,json,vue,css,scss,less,graphql,gql,md,mdx,yml,yaml}'",
+    "lint": "yarn lint:raw .",
+    "lint:fix": "yarn lint:raw --fix .",
+    "lint:raw": "eslint --ext .js,.jsx,.ts,.tsx --max-warnings=0",
+    "build-dist": "yarn es --all build-dist",
+    "dev:web": "yarn es server,web dev",
     "test": "jest",
+    "check:ts": "tsc --noEmit --skipLibCheck",
     "check:all": "yarn lint && yarn check:ts && yarn test",
-    "prepublishOnly": "yarn build"
+    "build": "del build && rollup -c",
+    "prepublishOnly": "yarn check:all && yarn build"
   },
+  "dependencies": {},
   "devDependencies": {
     "@types/faker": "4.x",
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.3",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
     "del-cli": "^2.0.0",
     "eslint": "6.x",
     "eslint-config-lffg": "7.x",
     "faker": "4.x",
+    "husky": "^3.0.4",
     "jest": "^24.9.0",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2",
     "rollup": "^1.20.3",
     "rollup-plugin-typescript2": "^0.24.0",
     "ts-jest": "^24.0.2",
@@ -36,6 +48,26 @@
   },
   "peerDependencies": {
     "faker": "4.x"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && yarn check:all"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,vue,css,scss,less,graphql,gql,md,mdx,yml,yaml}": [
+      "yarn format:raw",
+      "git add"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "yarn lint:raw --ignore-pattern '!.prettierrc.js'",
+      "git add"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
   },
   "publishConfig": {
     "access": "public"

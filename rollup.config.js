@@ -1,10 +1,9 @@
-import { join } from 'path';
 import typescript from 'rollup-plugin-typescript2';
-
-const out = join.bind(undefined, __dirname, 'build');
+import pkg from './package.json';
 
 export default {
-  input: './faker-create-factory.ts',
+  input: 'src/faker-create-factory.ts',
+  external: ['faker'],
   plugins: [
     typescript({
       rollupCommonJSResolveHack: true,
@@ -12,8 +11,7 @@ export default {
     })
   ],
   output: [
-    { file: out('faker-create-factory-cjs.js'), format: 'cjs' },
-    { file: out('faker-create-factory.mjs'), format: 'es' }
-  ],
-  external: ['faker']
+    { file: pkg.main, format: 'cjs' },
+    { file: pkg.module, format: 'es' }
+  ]
 };
