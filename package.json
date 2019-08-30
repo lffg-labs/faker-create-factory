@@ -1,6 +1,9 @@
 {
   "name": "faker-create-factory",
   "version": "1.0.0",
+  "files": [
+    "build"
+  ],
   "description": "Factory creator utility to Faker.js",
   "main": "./build/faker-create-factory-cjs.js",
   "module": "./build/faker-create-factory.mjs",
@@ -14,7 +17,8 @@
     "lint:fix": "yarn lint --fix",
     "check:ts": "tsc --noEmit --skipLibCheck",
     "test": "jest",
-    "check:all": "yarn lint && yarn check:ts && yarn test"
+    "check:all": "yarn lint && yarn check:ts && yarn test",
+    "prepublishOnly": "yarn build"
   },
   "devDependencies": {
     "@types/faker": "4.x",
