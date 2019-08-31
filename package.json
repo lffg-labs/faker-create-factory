@@ -35,7 +35,7 @@
     "cz-conventional-changelog": "^3.0.2",
     "del-cli": "^2.0.0",
     "eslint": "6.x",
-    "eslint-config-lffg": "7.x",
+    "eslint-config-lffg": "^8.0.0",
     "faker": "4.x",
     "husky": "^3.0.4",
     "jest": "^24.9.0",
