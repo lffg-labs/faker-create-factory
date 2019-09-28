@@ -49,4 +49,13 @@ describe('faker create factory', () => {
 
     expect(gen.age).toBe(customAge);
   });
+
+  it('should have an index parameter', () => {
+    const CustomSchema = createFactory<{ i: number }>((_, index) => ({
+      i: index
+    }));
+
+    const gen = CustomSchema.generateMany(5);
+    expect(gen).toEqual(Array.from({ length: 5 }).map((_, i) => ({ i })));
+  });
 });

@@ -6,7 +6,7 @@ type OverridesType<T> =
   | ((fakerInstance: typeof faker) => DeepPartial<T>);
 
 export function createFactory<T = any>(
-  schemaGenerator: (fakerInstance: typeof faker) => T
+  schemaGenerator: (fakerInstance: typeof faker, index: number) => T
 ) {
   function generateMany(
     ammount: number,
@@ -18,8 +18,8 @@ export function createFactory<T = any>(
       ? customOverrides(faker)
       : customOverrides;
 
-    return Array.from({ length: ammount }).map(() =>
-      Object.assign(schemaGenerator(faker), overrides)
+    return Array.from({ length: ammount }).map((_, index) =>
+      Object.assign(schemaGenerator(faker, index), overrides)
     );
   }
 
