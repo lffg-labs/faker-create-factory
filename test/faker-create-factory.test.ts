@@ -43,14 +43,31 @@ describe('faker create factory', () => {
   it('should override with a function callback', () => {
     const customAge = Date.now();
 
-    const gen = Schema.generate((faker) => ({
-      age: faker.helpers.randomize([customAge])
-    }));
+    const gen1 = Schema.generate(() => ({ age: customAge }));
+    const gen2 = Schema.generate({ age: customAge });
 
-    expect(gen.age).toBe(customAge);
+    expect(gen1.age).toBe(customAge);
+    expect(gen2.age).toBe(customAge);
   });
 
-  it('should have an index parameter', () => {
+  it('should generate different overrides', () => {
+    const [gen1, gen2] = Schema.generateMany(2, () => ({
+      age: Math.random()
+    }));
+
+    expect(gen1.age !== gen2.age).toBeTruthy();
+  });
+
+  it('should have an index parameter in the generate many callback', () => {
+    const [gen1, gen2] = Schema.generateMany(2, (_, index) => ({
+      age: index
+    }));
+
+    expect(gen1).toHaveProperty('age', 0);
+    expect(gen2).toHaveProperty('age', 1);
+  });
+
+  it('should have an index parameter in create factory', () => {
     const CustomSchema = createFactory<{ i: number }>((_, index) => ({
       i: index
     }));
